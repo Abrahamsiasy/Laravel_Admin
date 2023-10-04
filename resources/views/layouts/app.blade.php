@@ -325,10 +325,7 @@
 
     @if (
         $conName[0] == 'customer' &&
-            ($conName[1] == 'dashboard' ||
-                $conName[1] == 'order' ||
-                $conName[1] == 'profile-change' ||
-                $conName[1] == 'password-change'))
+            ($conName[1] == 'dashboard' || $conName[1] == 'profile-change' || $conName[1] == 'password-change'))
         @php
             $item_row = DB::table('page_other_items')
                 ->where('id', 7)

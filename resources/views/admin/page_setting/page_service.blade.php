@@ -1,6 +1,6 @@
 @extends('admin.admin_layouts')
 @section('admin_content')
-    <h1 class="h3 mb-3 text-gray-800">Edit Resurch And Publication Page Information</h1>
+    <h1 class="h3 mb-3 text-gray-800">Edit Research And Publication Page Information</h1>
 
     <form action="{{ url('admin/page/service/update') }}" method="post">
         @csrf

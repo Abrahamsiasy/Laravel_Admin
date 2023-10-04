@@ -24,10 +24,10 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
-        
+
         $service = new Service();
         $data = $request->only($service->getFillable());
 
@@ -37,14 +37,14 @@ class ServiceController extends Controller
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        if(empty($data['slug'])) {
+        if (empty($data['slug'])) {
             $data['slug'] = Str::slug($request->name);
         }
 
         $statement = DB::select("SHOW TABLE STATUS LIKE 'services'");
         $ai_id = $statement[0]->Auto_increment;
         $ext = $request->file('photo')->extension();
-        $final_name = 'service-'.$ai_id.'.'.$ext;
+        $final_name = 'service-' . $ai_id . '.' . $ext;
         $request->file('photo')->move(public_path('uploads/'), $final_name);
         $data['photo'] = $final_name;
 
@@ -60,14 +60,14 @@ class ServiceController extends Controller
 
     public function update(Request $request, $id)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
-        
+
         $service = Service::findOrFail($id);
         $data = $request->only($service->getFillable());
 
-        if($request->hasFile('photo')) {
+        if ($request->hasFile('photo')) {
             $request->validate([
                 'name'   =>  [
                     'required',
@@ -78,9 +78,9 @@ class ServiceController extends Controller
                 ],
                 'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
             ]);
-            unlink(public_path('uploads/'.$service->photo));
+            unlink(public_path('uploads/' . $service->photo));
             $ext = $request->file('photo')->extension();
-            $final_name = 'service-'.$id.'.'.$ext;
+            $final_name = 'service-' . $id . '.' . $ext;
             $request->file('photo')->move(public_path('uploads/'), $final_name);
             $data['photo'] = $final_name;
         } else {
@@ -102,12 +102,12 @@ class ServiceController extends Controller
 
     public function destroy($id)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
-        
+
         $service = Service::findOrFail($id);
-        unlink(public_path('uploads/'.$service->photo));
+        unlink(public_path('uploads/' . $service->photo));
         $service->delete();
         return Redirect()->back()->with('success', 'Service is deleted successfully!');
     }

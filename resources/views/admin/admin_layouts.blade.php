@@ -150,11 +150,7 @@
                 @endif
             @endif
 
-            @if($conName[1] == 'order')
-                @if(!in_array('Order Section', $arr_one))
-                    <script>window.location = "{{ url('admin/dashboard') }}";</script>
-                @endif
-            @endif
+            
 
             @if($conName[1] == 'customer')
                 @if(!in_array('Customer Section', $arr_one))
@@ -254,7 +250,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('admin.page_home.edit') }}">Home</a>
                     <a class="collapse-item" href="{{ route('admin.page_about.edit') }}">About</a>
-                    <a class="collapse-item" href="{{ route('admin.page_service.edit') }}">Resurch And Publication</a>
+                    <a class="collapse-item" href="{{ route('admin.page_service.edit') }}">Research And Publication</a>
                     <a class="collapse-item" href="{{ route('admin.page_blog.edit') }}">Blog</a>
                     <a class="collapse-item" href="{{ route('admin.page_project.edit') }}">Project</a>
                     <a class="collapse-item" href="{{ route('admin.page_faq.edit') }}">FAQ</a>
@@ -420,42 +416,19 @@
         </li>
         @endif
 
-        <!-- Product Section -->
-        @php if( in_array('Product Section', $arr_one) || $logged_user_role_id==1 ): @endphp
-        <li class="nav-item {{ Request::is('admin/product/*')||Request::is('admin/shipping/*')||Request::is('admin/coupon/*') ? 'active' : '' }}">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct" aria-expanded="true" aria-controls="collapseProduct">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Product Section</span>
-            </a>
-            <div id="collapseProduct" class="collapse {{ Request::is('admin/product/*')||Request::is('admin/shipping/*')||Request::is('admin/coupon/*') ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('admin.product.index') }}">Product</a>
-                    <a class="collapse-item" href="{{ route('admin.shipping.index') }}">Shipping</a>
-                    <a class="collapse-item" href="{{ route('admin.coupon.index') }}">coupon</a>
-                </div>
-            </div>
-        </li>
-        @endif
+        
 
-        <!-- Order -->
-        @php if( in_array('Order Section', $arr_one) || $logged_user_role_id==1 ): @endphp
-        <li class="nav-item {{ Request::is('admin/order/*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('admin.order.index') }}">
-                <i class="fas fa-bookmark"></i>
-                <span>Order Section</span>
-            </a>
-        </li>
-        @endif
+        
 
         <!-- Customer -->
-        @php if( in_array('Customer Section', $arr_one) || $logged_user_role_id==1 ): @endphp
+        {{-- @php if( in_array('Customer Section', $arr_one) || $logged_user_role_id==1 ): @endphp
         <li class="nav-item {{ Request::is('admin/customer/*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('admin.customer.index') }}">
                 <i class="fas fa-users"></i>
                 <span>Customer Section</span>
             </a>
         </li>
-        @endif
+        @endif --}}
 
         <!-- Why Choose Us -->
         @php if( in_array('Why Choose Us', $arr_one) || $logged_user_role_id==1 ): @endphp
@@ -472,7 +445,7 @@
         <li class="nav-item {{ Request::is('admin/service/*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('admin.service.index') }}">
                 <i class="fas fa-certificate"></i>
-                <span>Service</span>
+                <span>Resurch And Publication</span>
             </a>
         </li>
         @endif

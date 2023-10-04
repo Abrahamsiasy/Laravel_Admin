@@ -25,7 +25,6 @@ use App\Http\Controllers\Admin\PagePhotoGalleryController;
 use App\Http\Controllers\Admin\PagePrivacyController;
 use App\Http\Controllers\Admin\PageProjectController;
 use App\Http\Controllers\Admin\PageServiceController;
-use App\Http\Controllers\Admin\PageShopController;
 use App\Http\Controllers\Admin\PageTeamController;
 use App\Http\Controllers\Admin\PageTermController;
 use App\Http\Controllers\Admin\PageVideoGalleryController;
@@ -48,17 +47,13 @@ use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\WhyChooseController;
 use App\Http\Controllers\Admin\JobController as JobControllerForAdmin;
 use App\Http\Controllers\Admin\FaqController as FaqControllerForAdmin;
-use App\Http\Controllers\Admin\ProductController as ProductControllerForAdmin;
-use App\Http\Controllers\Admin\OrderController as OrderControllerForAdmin;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TranslationController;
 
-use App\Http\Controllers\Customer\CheckoutController;
 use App\Http\Controllers\Customer\DashboardController as DashboardControllerForCustomer;
 use App\Http\Controllers\Customer\ForgetPasswordController as ForgetPasswordControllerForCustomer;
 use App\Http\Controllers\Customer\LoginController as LoginControllerForCustomer;
 use App\Http\Controllers\Customer\LogoutController as LogoutControllerForCustomer;
-use App\Http\Controllers\Customer\OrderController as OrderControllerForCustomer;
 use App\Http\Controllers\Customer\PasswordChangeController as PasswordChangeControllerForCustomer;
 use App\Http\Controllers\Customer\ProfileChangeController as ProfileChangeControllerForCustomer;
 use App\Http\Controllers\Customer\RegistrationController;
@@ -74,7 +69,6 @@ use App\Http\Controllers\Front\JobController as JobControllerForFront;
 use App\Http\Controllers\Front\PageController;
 use App\Http\Controllers\Front\PhotoGalleryController;
 use App\Http\Controllers\Front\PrivacyController;
-use App\Http\Controllers\Front\ProductController as ProductControllerForFront;
 use App\Http\Controllers\Front\ProjectController as ProjectControllerForFront;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\Front\ServiceController as ServiceControllerForFront;
@@ -90,7 +84,7 @@ use App\Http\Controllers\Front\VideoGalleryController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('about', [AboutController::class, 'index'])->name('front.about');
-Route::get('resurch_and_publication', [ServiceControllerForFront::class, 'index'])->name('front.services');
+Route::get('research_and_publication', [ServiceControllerForFront::class, 'index'])->name('front.services');
 Route::get('service/{slug}', [ServiceControllerForFront::class, 'detail']);
 Route::get('blog', [BlogControllerForFront::class, 'index'])->name('front.blogs');
 Route::get('blog/{slug}', [BlogControllerForFront::class, 'detail']);
@@ -114,15 +108,8 @@ Route::get('career', [JobControllerForFront::class, 'index'])->name('front.caree
 Route::get('job/{slug}', [JobControllerForFront::class, 'detail']);
 Route::get('job/apply/{slug}', [JobControllerForFront::class, 'apply']);
 Route::post('job/apply/store', [JobControllerForFront::class, 'apply_form'])->name('front.apply_form');
-Route::get('shop', [ProductControllerForFront::class, 'index'])->name('front.shop');
-Route::get('product/{slug}', [ProductControllerForFront::class, 'detail']);
-Route::post('product/cart/add', [ProductControllerForFront::class, 'add_to_cart'])->name('front.add_to_cart');
-Route::get('cart', [ProductControllerForFront::class, 'cart'])->name('front.cart');
-Route::get('cart/delete/{id}', [ProductControllerForFront::class, 'cart_item_delete']);
-Route::post('cart/update', [ProductControllerForFront::class, 'update_cart']);
-Route::get('checkout', [ProductControllerForFront::class, 'checkout'])->name('front.checkout');
-Route::post('checkout/shipping/update', [ProductControllerForFront::class, 'shipping_update'])->name('front.shipping_update');
-Route::post('checkout/coupon/update', [ProductControllerForFront::class, 'coupon_update'])->name('front.coupon_update');
+
+
 Route::post('subscription', [SubscriptionController::class, 'index'])->name('front.subscription');
 Route::get('subscriber/verify/{token}/{email}', [SubscriptionController::class, 'verify']);
 Route::get('terms-and-conditions', [TermController::class, 'index'])->name('front.term');
@@ -139,7 +126,6 @@ Route::get('customer/forget-password', [ForgetPasswordControllerForCustomer::cla
 Route::post('customer/forget-password/store', [ForgetPasswordControllerForCustomer::class, 'store'])->name('customer.forget_password.store');
 Route::get('customer/reset-password/{token}/{email}', [ResetPasswordControllerForCustomer::class, 'index']);
 Route::post('customer/reset-password/update', [ResetPasswordControllerForCustomer::class, 'update']);
-Route::post('customer/checkout/billing/shipping', [CheckoutController::class, 'billing_shipping'])->name('customer.billing_shipping_submit');
 Route::get('customer/payment', [CheckoutController::class, 'payment'])->name('customer.payment');
 Route::post('customer/payment/stripe', [CheckoutController::class, 'stripe'])->name('customer.stripe');
 Route::get('customer/stripe/success', [CheckoutController::class, 'stripe_success'])->name('customer.stripe.success');
@@ -147,7 +133,6 @@ Route::get('customer/stripe/cancel', [CheckoutController::class, 'stripe_cancel'
 Route::post('customer/payment/paypal', [CheckoutController::class, 'paypal'])->name('customer.paypal');
 Route::get('customer/paypal/success', [CheckoutController::class, 'paypal_success'])->name('customer.paypal.success');
 Route::get('customer/paypal/cancel', [CheckoutController::class, 'paypal_cancel'])->name('customer.paypal.cancel');
-Route::post('customer/checkout/login/store', [CheckoutController::class, 'login'])->name('customer.login_from_checkout_page.store');
 
 Route::middleware(['customer:customer'])->group(function () {
     Route::get('customer/dashboard', [DashboardControllerForCustomer::class, 'index'])->name('customer.dashboard');
@@ -155,7 +140,6 @@ Route::middleware(['customer:customer'])->group(function () {
     Route::post('customer/password-change/update', [PasswordChangeControllerForCustomer::class, 'update']);
     Route::get('customer/profile-change', [ProfileChangeControllerForCustomer::class, 'index'])->name('customer.profile_change');
     Route::post('customer/profile-change/update', [ProfileChangeControllerForCustomer::class, 'update']);
-    Route::get('customer/order', [OrderControllerForCustomer::class, 'index'])->name('customer.order');
 });
 
 
@@ -349,9 +333,6 @@ Route::middleware(['admin:admin'])->group(function () {
         Route::get('/service/edit', [PageServiceController::class, 'edit'])->name('admin.page_service.edit');
         Route::post('/service/update', [PageServiceController::class, 'update']);
 
-        Route::get('/shop/edit', [PageShopController::class, 'edit'])->name('admin.page_shop.edit');
-        Route::post('/shop/update', [PageShopController::class, 'update']);
-
         Route::get('/blog/edit', [PageBlogController::class, 'edit'])->name('admin.page_blog.edit');
         Route::post('/blog/update', [PageBlogController::class, 'update']);
 
@@ -457,12 +438,12 @@ Route::middleware(['admin:admin'])->group(function () {
     /* --------------------------------------- */
     /* Service - Admin */
     /* --------------------------------------- */
-    Route::get('admin/resurch_and_publication/view', [ServiceControllerForAdmin::class, 'index'])->name('admin.service.index');
-    Route::get('admin/resurch_and_publication/create', [ServiceControllerForAdmin::class, 'create'])->name('admin.service.create');
-    Route::post('admin/resurch_and_publication/store', [ServiceControllerForAdmin::class, 'store'])->name('admin.service.store');
-    Route::get('admin/resurch_and_publication/delete/{id}', [ServiceControllerForAdmin::class, 'destroy']);
-    Route::get('admin/resurch_and_publication/edit/{id}', [ServiceControllerForAdmin::class, 'edit']);
-    Route::post('admin/resurch_and_publication/update/{id}', [ServiceControllerForAdmin::class, 'update']);
+    Route::get('admin/research_and_publication/view', [ServiceControllerForAdmin::class, 'index'])->name('admin.service.index');
+    Route::get('admin/research_and_publication/create', [ServiceControllerForAdmin::class, 'create'])->name('admin.service.create');
+    Route::post('admin/research_and_publication/store', [ServiceControllerForAdmin::class, 'store'])->name('admin.service.store');
+    Route::get('admin/research_and_publication/delete/{id}', [ServiceControllerForAdmin::class, 'destroy']);
+    Route::get('admin/research_and_publication/edit/{id}', [ServiceControllerForAdmin::class, 'edit']);
+    Route::post('admin/research_and_publication/update/{id}', [ServiceControllerForAdmin::class, 'update']);
 
 
     /* --------------------------------------- */
@@ -563,26 +544,7 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::post('admin/shipping/update/{id}', [ShippingController::class, 'update']);
 
 
-    /* --------------------------------------- */
-    /* Product - Admin */
-    /* --------------------------------------- */
-    Route::get('admin/product/view', [ProductControllerForAdmin::class, 'index'])->name('admin.product.index');
-    Route::get('admin/product/create', [ProductControllerForAdmin::class, 'create'])->name('admin.product.create');
-    Route::post('admin/product/store', [ProductControllerForAdmin::class, 'store'])->name('admin.product.store');
-    Route::get('admin/product/delete/{id}', [ProductControllerForAdmin::class, 'destroy']);
-    Route::get('admin/product/edit/{id}', [ProductControllerForAdmin::class, 'edit']);
-    Route::post('admin/product/update/{id}', [ProductControllerForAdmin::class, 'update']);
 
-
-    /* --------------------------------------- */
-    /* Order - Admin */
-    /* --------------------------------------- */
-    Route::get('admin/order/view', [OrderControllerForAdmin::class, 'index'])->name('admin.order.index');
-    Route::get('admin/order/create', [OrderControllerForAdmin::class, 'create'])->name('admin.order.create');
-    Route::post('admin/order/store', [OrderControllerForAdmin::class, 'store'])->name('admin.order.store');
-    Route::get('admin/order/detail/{id}', [OrderControllerForAdmin::class, 'detail']);
-    Route::get('admin/order/invoice/{id}', [OrderControllerForAdmin::class, 'invoice']);
-    Route::get('admin/order/delete/{id}', [OrderControllerForAdmin::class, 'destroy']);
 
 
     /* --------------------------------------- */

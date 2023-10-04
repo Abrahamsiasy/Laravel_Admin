@@ -11,7 +11,8 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="">Sidebar Total Recent Post</label>
-                            <input type="text" name="sidebar_total_recent_post" class="form-control" value="{{ $general_setting->sidebar_total_recent_post }}">
+                            <input type="text" name="sidebar_total_recent_post" class="form-control"
+                                value="{{ $general_setting->sidebar_total_recent_post }}">
                         </div>
                         <button type="submit" class="btn btn-success">Update</button>
                     </div>
@@ -19,5 +20,4 @@
             </div>
         </div>
     </form>
-
 @endsection
