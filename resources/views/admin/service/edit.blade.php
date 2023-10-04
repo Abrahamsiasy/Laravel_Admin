@@ -1,14 +1,16 @@
 @extends('admin.admin_layouts')
 @section('admin_content')
-    <h1 class="h3 mb-3 text-gray-800">Edit Service</h1>
+    <h1 class="h3 mb-3 text-gray-800">Edit Resurch And Publication</h1>
 
-    <form action="{{ url('admin/service/update/'.$service->id) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('admin/Resurch And Publication/update/' . $service->id) }}" method="post"
+        enctype="multipart/form-data">
         @csrf
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 mt-2 font-weight-bold text-primary">Edit Service</h6>
+                <h6 class="m-0 mt-2 font-weight-bold text-primary">Edit Resurch And Publication</h6>
                 <div class="float-right d-inline">
-                    <a href="{{ route('admin.service.index') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> View All</a>
+                    <a href="{{ route('admin.service.index') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>
+                        View All</a>
                 </div>
             </div>
             <div class="card-body">
@@ -31,7 +33,7 @@
                 <div class="form-group">
                     <label for="">Existing Photo</label>
                     <div>
-                        <img src="{{ asset('uploads/'.$service->photo) }}" alt="" class="w_200">
+                        <img src="{{ asset('uploads/' . $service->photo) }}" alt="" class="w_200">
                     </div>
                 </div>
                 <div class="form-group">
@@ -57,5 +59,4 @@
             </div>
         </div>
     </form>
-
 @endsection

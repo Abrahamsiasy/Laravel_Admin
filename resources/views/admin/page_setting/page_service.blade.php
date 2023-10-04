@@ -1,6 +1,6 @@
 @extends('admin.admin_layouts')
 @section('admin_content')
-    <h1 class="h3 mb-3 text-gray-800">Edit Service Page Information</h1>
+    <h1 class="h3 mb-3 text-gray-800">Edit Resurch And Publication Page Information</h1>
 
     <form action="{{ url('admin/page/service/update') }}" method="post">
         @csrf
@@ -18,11 +18,13 @@
                     <label for="">Status</label>
                     <div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="rr1" value="Show" @if($page_service->status == 'Show') checked @endif>
+                            <input class="form-check-input" type="radio" name="status" id="rr1" value="Show"
+                                @if ($page_service->status == 'Show') checked @endif>
                             <label class="form-check-label font-weight-normal" for="rr1">Show</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="rr2" value="Hide" @if($page_service->status == 'Hide') checked @endif>
+                            <input class="form-check-input" type="radio" name="status" id="rr2" value="Hide"
+                                @if ($page_service->status == 'Hide') checked @endif>
                             <label class="form-check-label font-weight-normal" for="rr2">Hide</label>
                         </div>
                     </div>

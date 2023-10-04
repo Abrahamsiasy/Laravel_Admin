@@ -254,8 +254,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('admin.page_home.edit') }}">Home</a>
                     <a class="collapse-item" href="{{ route('admin.page_about.edit') }}">About</a>
-                    <a class="collapse-item" href="{{ route('admin.page_service.edit') }}">Service</a>
-                    <a class="collapse-item" href="{{ route('admin.page_shop.edit') }}">Shop</a>
+                    <a class="collapse-item" href="{{ route('admin.page_service.edit') }}">Resurch And Publication</a>
                     <a class="collapse-item" href="{{ route('admin.page_blog.edit') }}">Blog</a>
                     <a class="collapse-item" href="{{ route('admin.page_project.edit') }}">Project</a>
                     <a class="collapse-item" href="{{ route('admin.page_faq.edit') }}">FAQ</a>
